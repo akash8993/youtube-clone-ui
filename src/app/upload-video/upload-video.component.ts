@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-upload-video',
+  templateUrl: './upload-video.component.html',
+  styleUrls: ['./upload-video.component.css']
 })
-export class AppComponent {
-  title = 'youtube-clone';
+export class UploadVideoComponent {
   public files: NgxFileDropEntry[] = [];
 
   public dropped(files: NgxFileDropEntry[]) {
