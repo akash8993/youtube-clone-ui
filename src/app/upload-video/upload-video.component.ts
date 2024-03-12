@@ -7,6 +7,7 @@ import { VideoService } from '../video.service';
   styleUrls: ['./upload-video.component.css']
 })
 export class UploadVideoComponent {
+  
   public files: NgxFileDropEntry[] = [];
   fileUploaded: Boolean= false;
   fileEntry: FileSystemFileEntry | undefined;
@@ -67,7 +68,9 @@ export class UploadVideoComponent {
     {
         this.fileEntry.file(file=>{
           this.videoService.uploadVideo(file).subscribe(data=>{
-              console.log("Video Uploaded Successfully");
+              console.log(data.videoId);
+              console.log(data.videoUrl);
+              //Will Save video details
           });
         })
         
