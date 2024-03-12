@@ -1,0 +1,23 @@
+<div flexLayout="row wrap">
+    <div fxFlex="20%">Hi</div>
+   
+    <div fxFlex="30%">
+        <div class="mat-title">Add Video Metadata</div>
+        <form>
+            <input [(ngModel)] ="title" name="title" required>
+            <input [(ngModel)]="description" name="description"required>
+            <select name="videoStatus" [(ngModel)]="videoStatus">
+                <option value="PUBLIC">PUBLIC</option>
+                <option value="PRIVATE">PRIVATE</option>
+            </select>
+            
+            <button type="submit" mat-raised-button color="primary" (click)="SaveDetails()">Save</button>
+        </form>
+        
+    </div>
+
+
+
+    <div fxFlex="30%">Video Player</div>
+    <div fxFlex="20%">Hi</div>
+    </div>
