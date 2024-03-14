@@ -19,4 +19,23 @@ export class VideoService {
 
     return this.HttpClient.post<uploadVideoResponse>(this.URL+"/upload-video",formData);
   }
+
+
+  uploadThumbnail(file: File, videoId: string): Observable<string>  
+  {
+          const formData = new FormData()
+
+          //Yahan pe file hai apna request param backend pe
+          //Ye yahan pe humne file as a name jo postman se dete and then file
+          // file is key, file is type, file name
+          formData.append('file', file, file.name)
+          formData.append('videoId', videoId);
+
+    return this.HttpClient.post(this.URL+"/thumbnail",formData,{
+      responseType : 'text'
+    });
+  }
+
+
+
 }

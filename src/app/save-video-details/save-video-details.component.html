@@ -4,14 +4,38 @@
     <div fxFlex="30%">
         <div class="mat-title">Add Video Metadata</div>
         <form>
-            <input [(ngModel)] ="title" name="title" required>
-            <input [(ngModel)]="description" name="description"required>
+            <input [(ngModel)] ="title" name="title" required><br><br>
+            <input [(ngModel)]="description" name="description"required><br><br>
             <select name="videoStatus" [(ngModel)]="videoStatus">
                 <option value="PUBLIC">PUBLIC</option>
                 <option value="PRIVATE">PRIVATE</option>
             </select>
-            
+
+            <br><br>
+            <div>
+                <label for="inputGroupFile01">
+                    Upload Thumbnail:
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01" (change)="onFileSelected($event)">
+
+                </div>
+                <br>
+                <div>
+                    <p>Selected File : {{selectedFileName}}</p>
+                </div>
+                <hr>
+                <div>
+                    <button mat-raised-button color="primary" type="submit"(click)="uploadThumbnail()" >Upload</button>
+                </div>
+                <br>
+                </label>
+            </div>
+            <br>
             <button type="submit" mat-raised-button color="primary" (click)="SaveDetails()">Save</button>
+            <br>
+            
+        
         </form>
         
     </div>

@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { saveVideoDetails } from './saveVideoDetails';
-
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { VideoService } from '../video.service';
 @Component({
   selector: 'app-save-video-details',
   templateUrl: './save-video-details.component.html',
   styleUrls: ['./save-video-details.component.css']
 })
 export class SaveVideoDetailsComponent {
+
+
 
 title: string='';
 description: string='';
@@ -22,7 +25,12 @@ saveVideoDetailsForm: saveVideoDetails ={
   description: '',
   videoStatus: '',
 }
-constructor()
+
+selectedFile!: File;
+selectedFileName: string ='';
+  videoId: any;
+//Ye activated route bcoz apan ko url uthana hai usse id lenege
+constructor( private activatedRoute: ActivatedRoute, private videoService: VideoService)
 {
 
 }
@@ -36,17 +44,22 @@ SaveDetails() {
   console.log(this.saveVideoDetailsForm);
   }
   
-  addTag(): void {
-    if (this.newTag && this.tags.indexOf(this.newTag) === -1) {
-      this.tags.push(this.newTag);
-      this.newTag = '';
-    }
-  }
 
-  removeTag(tag: string): void {
-    const index = this.tags.indexOf(tag);
-    if (index !== -1) {
-      this.tags.splice(index, 1);
+//Jo apan ko file name lena hai uske lie hai ye
+  onFileSelected($event: Event ) {
+
+    //Yahan pe ts ignore isleye jisse error na aae undefined wlaa
+    //@ts-ignore
+    this.selectedFile= event.target.files[0];
+    this.selectedFileName= this.selectedFile.name;
+    console.log(this.selectedFileName);
     }
-  }
+
+    uploadThumbnail() {
+       this.videoId= this.activatedRoute.snapshot.params['videoId'];
+      this.videoService.uploadThumbnail(this.selectedFile, this.videoId).subscribe(data=>{
+        console.log(data);
+        alert("Uploaded");
+      })
+      }
 }
